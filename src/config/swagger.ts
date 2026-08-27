@@ -48,6 +48,14 @@ export const swaggerSpec = {
         },
         required: ["nombre", "email"],
       },
+      ClienteActualizar: {
+  type: "object",
+  properties: {
+    nombre: { type: "string" },
+    email: { type: "string", format: "email" },
+    telefono: { type: "string" },
+  },
+},
       Pedido: {
         type: "object",
         properties: {
@@ -223,7 +231,7 @@ export const swaggerSpec = {
           required: true,
           content: {
             "application/json": {
-              schema: { $ref: "#/components/schemas/Cliente" },
+              schema: { $ref: "#/components/schemas/ClienteActualizar" },
             },
           },
         },

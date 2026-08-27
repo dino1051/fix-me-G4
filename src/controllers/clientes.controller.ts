@@ -14,7 +14,7 @@ export const clientesRouter = Router();
 clientesRouter.get("/", async (req, res, next) => {
   try {
     // BUG: la funcion importada se llama "obtenerClientes", no "obtenerCliente".
-    const clientes = await obtenerCliente();
+    const clientes = await obtenerClientes();
     res.json(clientes);
   } catch (err) {
     next(err);
@@ -62,7 +62,11 @@ clientesRouter.delete("/:id", async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     // BUG: no se revisa si realmente se elimino algo, siempre responde OK.
-    await eliminarCliente(id);
+   const eliminado = await eliminarCliente(id);
+   if (!eliminado) {
+  res.status(404).json({ error: "Cliente no encontrado" });
+  return;
+}
     res.status(200).json({ message: "Cliente eliminado" });
   } catch (err) {
     next(err);
