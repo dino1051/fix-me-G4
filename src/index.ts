@@ -16,7 +16,7 @@ const app = express();
 
 app.use(cors());
 // BUG: "jsonn" no existe en express, esto tumba el servidor al arrancar.
-app.use(express.jsonn());
+app.use(express.json());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
@@ -33,6 +33,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT ?? 3000;
 
+console.clear()
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
   console.log(`Documentacion en http://localhost:${PORT}/api-docs`);
