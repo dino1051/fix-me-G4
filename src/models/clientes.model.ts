@@ -25,7 +25,7 @@ export const crearCliente = async (data: {
   // BUG: la columna "telefono" no esta en el INSERT, asi que aunque el
   // cliente la mande siempre se guarda como null.
   const result = await pool.query(
-    "INSERT INTO clientes (nombre, email) VALUES ($1, $2) RETURNING *",
+    "INSERT INTO clientes (nombre, email, telefono) VALUES ($1, $2, $3) RETURNING *",
     [data.nombre, data.email, data.telefono ?? null]
   );
   return result.rows[0];
