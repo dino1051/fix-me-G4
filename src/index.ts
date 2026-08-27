@@ -34,6 +34,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT ?? 3000;
 
+console.clear()
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
   console.log(`Documentacion en http://localhost:${PORT}/api-docs`);
